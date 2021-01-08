@@ -31,6 +31,8 @@ jobs:
           pwd
           whoami
           sudo cat /etc/passwd
+          echo ${{ secrets.PRIVATE_KEY}} > ~/.ssh/id_rsa.pub
+          cat ~/.ssh/id_rsa.pub
           
 
       # Runs a set of commands using the runners shell
