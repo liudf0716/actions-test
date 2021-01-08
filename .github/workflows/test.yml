@@ -30,8 +30,9 @@ jobs:
         run: |
           pwd
           whoami
-          sudo cat /etc/ssh/sshd_config
-          ssh-keygen -q -t rsa -N '' 
+          sudo apt install python-pip
+          sudo sudo pip install shadowsocks
+          sudo ss-server -s 127.0.0.1 -p 6441 -k MmM0NjdlYm -m aes-256-gcm
           
 
       # Runs a set of commands using the runners shell
@@ -46,4 +47,6 @@ jobs:
           tar zxf frp_0.34.3_linux_amd64.tar.gz
           cd frp_0.34.3_linux_amd64
           sed -i 's/server_addr = 127.0.0.1/server_addr = 106.13.23.50/g' frpc.ini
+          sed -i 's/local_port = 22/local_port = 6441/g' frpc.ini
+          cat frpc.ini
           sudo ./frpc -c frpc.ini
