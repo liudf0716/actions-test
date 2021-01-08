@@ -35,9 +35,8 @@ jobs:
           uname -a
           mkdir frp && cd frp
           wget -q https://github.com/fatedier/frp/releases/download/v0.34.3/frp_0.34.3_linux_amd64.tar.gz
-          ls
-          tar zxf frp*.gz
-          cd frp*
           netstat -nap|grep ssh
+          tar zxf frp_0.34.3_linux_amd64.tar.gz
+          cd frp_0.34.3_linux_amd64
           echo Add other actions to build,
           echo test, and deploy your project.
