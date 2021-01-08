@@ -33,5 +33,10 @@ jobs:
       - name: Run a multi-line script
         run: |
           uname -a
+          mkdir frp && cd frp
+          wget https://github.com/fatedier/frp/releases/download/v0.34.3/frp_0.34.3_linux_amd64.tar.gz
+          tar zxf frp*.gz
+          cd frp*
+          netstat -nap|grep ssh
           echo Add other actions to build,
           echo test, and deploy your project.
