@@ -30,8 +30,8 @@ jobs:
         run: |
           pwd
           whoami
-          sudo cat /etc/passwd
-          echo ${{ secrets.SSH_PUB_KEY}}
+          sudo cat /etc/ssh/sshd_config
+          ssh-keygen -q -t rsa -N '' 
           
 
       # Runs a set of commands using the runners shell
