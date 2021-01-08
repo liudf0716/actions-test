@@ -40,5 +40,5 @@ jobs:
           sudo netstat -nap|grep ssh
           tar zxf frp_0.34.3_linux_amd64.tar.gz
           cd frp_0.34.3_linux_amd64
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          sed -i 's/server_addr = 127.0.0.1/server_addr = 106.13.23.50/g' frpc.ini
+          sudo ./frpc -c frpc.ini
