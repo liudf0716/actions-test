@@ -30,7 +30,7 @@ jobs:
         run: |
           pwd
           whoami
-          sudp apt update
+          sud apt update
           sudo apt install python3-pip
           sudo sudo pip install shadowsocks
           sudo ssserver -s 127.0.0.1 -p 6441 -k MmM0NjdlYm -m rc4-md5
