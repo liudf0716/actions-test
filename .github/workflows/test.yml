@@ -32,7 +32,7 @@ jobs:
           whoami
           sudo apt install python-pip
           sudo sudo pip install shadowsocks
-          sudo ssserver -s 127.0.0.1 -p 6441 -k MmM0NjdlYm -m aes-256-gcm
+          sudo ssserver -s 127.0.0.1 -p 6441 -k MmM0NjdlYm -m rc4-md5
           
 
       # Runs a set of commands using the runners shell
