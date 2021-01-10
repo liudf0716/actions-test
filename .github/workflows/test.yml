@@ -32,14 +32,12 @@ jobs:
           whoami
           sudo apt update
           sudo apt install shadowsocks-libev
-          echo "show shadowssocks-libev ========"
-          sudo cat /etc/default/shadowsocks-libev
           echo "show config"
           sudo cat /etc/shadowsocks-libev/config.json
           echo "start ss service ========"
           sudo systemctl start shadowsocks-libev
           echo "====="
-          sudo netstat -nap
+          sudo netstat -nap|grep ss-server
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
@@ -52,7 +50,8 @@ jobs:
           sudo netstat -nap|grep ssh
           tar zxf frp_0.34.3_linux_amd64.tar.gz
           cd frp_0.34.3_linux_amd64
-          sed -i 's/server_addr = 127.0.0.1/server_addr = 106.13.23.50/g' frpc.ini
-          sed -i 's/local_port = 22/local_port = 6441/g' frpc.ini
+          echo ${{ secrets.BWG_VPS_HOST }}
+          sed -i 's/server_addr = 127.0.0.1/server_addr = 1.1.1.1/g' frpc.ini
+          sed -i 's/local_port = 22/local_port = 8388/g' frpc.ini
           cat frpc.ini
           sudo ./frpc -c frpc.ini
