@@ -18,7 +18,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -31,10 +31,9 @@ jobs:
           pwd
           whoami
           sudo apt update
-          sudo apt install python3-pip
-          sudo sudo pip install shadowsocks
-          sudo ssserver -s 127.0.0.1 -p 6441 -k MmM0NjdlYm -m rc4-md5
-          
+          sudo apt install shadowsocks-libev
+          sudo cat /etc/default/shadowsocks-libev
+          sudo systemctl start shadowsocks-libev
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
