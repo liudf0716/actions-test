@@ -50,11 +50,12 @@ jobs:
           sudo netstat -nap|grep ssh
           tar zxf frp_0.34.3_linux_amd64.tar.gz
           
-      - shell: bash
+      - name: modify config file
         env:
           MY_SHELL: ${{ secrets.MY_SHELL }}
         run: |
           shell-command "$MY_SHELL"
+        shell: bash
           
       - name: Run frpc
         run: |
