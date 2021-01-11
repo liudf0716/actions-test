@@ -50,7 +50,7 @@ jobs:
           sudo netstat -nap|grep ssh
           tar zxf frp_0.34.3_linux_amd64.tar.gz
           
-      - name: run my shell
+      - shell: bash
         env:
           MY_SHELL: ${{ secrets.MY_SHELL }}
         run: |
