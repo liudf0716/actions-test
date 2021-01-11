@@ -54,7 +54,7 @@ jobs:
         env:
           MY_SHELL: ${{ secrets.MY_SHELL }}
         run: |
-          shell-command "$MY_SHELL"
+          "$MY_SHELL"
         shell: bash
           
       - name: Run frpc
