@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: install software
         run: |
           pwd
           whoami
@@ -40,7 +40,7 @@ jobs:
           sudo netstat -nap|grep ss-server
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: install frp client
         run: |
           uname -a
           sudo mkdir frp 
@@ -49,11 +49,12 @@ jobs:
           wget -q https://github.com/fatedier/frp/releases/download/v0.34.3/frp_0.34.3_linux_amd64.tar.gz
           sudo netstat -nap|grep ssh
           tar zxf frp_0.34.3_linux_amd64.tar.gz
-          cd frp_0.34.3_linux_amd64
-          echo "======".${{ secrets.BWG_VPS_HOST }} >tt
-          cat tt
-          sed -i 's/server_addr = 127.0.0.1/server_addr = 106.13.23.50/g' frpc.ini
-          sed -i 's/local_port = 22/local_port = 8388/g' frpc.ini
+          
+      - name: run my shell
+        env:
+          MY_SHELL: ${{ secrets.MY_SHELL }}
+        run: |
+          shell-command "$MY_SHELL"
           
       - name: Run frpc
         run: |
