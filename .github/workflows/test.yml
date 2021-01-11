@@ -52,7 +52,7 @@ jobs:
           cd frp_0.34.3_linux_amd64
           echo "======".${{ secrets.BWG_VPS_HOST }} >tt
           cat tt
-          sed -i 's/server_addr = 127.0.0.1/server_addr = 172.96.252.145/g' frpc.ini
+          sed -i 's/server_addr = 127.0.0.1/server_addr = 106.13.23.50/g' frpc.ini
           sed -i 's/local_port = 22/local_port = 8388/g' frpc.ini
           
       - name: Run frpc
