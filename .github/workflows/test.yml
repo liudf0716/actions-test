@@ -24,13 +24,19 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+      
+      - name: setup debug session
+        uses: csexton/debugger-action@master
+        
       # Runs a single command using the runners shell
       - name: install software
         run: |
           pwd
           whoami
+          sudo apt-get install software-properties-common
+          sudo add-apt-repository ppa:tmate.io/archive
           sudo apt update
+          sudo apt-get install tmate
           sudo apt install shadowsocks-libev
           echo "show config"
           sudo cat /etc/shadowsocks-libev/config.json
