@@ -25,25 +25,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: setup debug session
-        uses: csexton/debugger-action@master
-        
+     
       # Runs a single command using the runners shell
       - name: install software
         run: |
-          pwd
-          whoami
-          sudo apt-get install software-properties-common
-          sudo add-apt-repository ppa:tmate.io/archive
           sudo apt update
-          sudo apt-get install tmate
           sudo apt install shadowsocks-libev
-          echo "show config"
-          sudo cat /etc/shadowsocks-libev/config.json
-          echo "start ss service ========"
-          sudo systemctl start shadowsocks-libev
-          echo "====="
-          sudo netstat -nap|grep ss-server
 
       # Runs a set of commands using the runners shell
       - name: install frp client
@@ -53,20 +40,8 @@ jobs:
           sudo chown $USER:$GROUPS frp 
           cd frp
           wget -q https://github.com/fatedier/frp/releases/download/v0.34.3/frp_0.34.3_linux_amd64.tar.gz
-          sudo netstat -nap|grep ssh
           tar zxf frp_0.34.3_linux_amd64.tar.gz
-          cd frp_0.34.3_linux_amd64
-          cat frpc.ini
           
-      - name: modify config file
-        run: |
-          cd frp/frp_0.34.3_linux_amd64
-          sed -i 's/server_addr = 127.0.0.1/server_addr = 106.13.23.50/g' frpc.ini
-          sed -i 's/local_port = 22/local_port = 8388/g' frpc.ini
-          sed -i "s/remote_port = 6000/remote_port = 6001/g" frpc.ini
-          
-      - name: Run frpc
-        run: |
-          cd frp/frp_0.34.3_linux_amd64
-          cat frpc.ini
-          sudo ./frpc -c frpc.ini
+      - name: setup debug session
+        uses: csexton/debugger-action@master
+        
