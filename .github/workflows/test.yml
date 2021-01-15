@@ -31,6 +31,9 @@ jobs:
         run: |
           sudo apt update
           sudo apt install shadowsocks-libev
+          sudo apt install squid
+          sudo cat  /etc/squid3/squid.conf
+          netstat -nap|grep tcp
 
       # Runs a set of commands using the runners shell
       - name: install frp client
